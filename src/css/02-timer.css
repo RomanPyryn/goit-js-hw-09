@@ -1,0 +1,31 @@
+.hw-block {
+    padding-left: 25px;
+}
+
+.input, .button {
+    font-size: 20px;
+}
+
+
+.timer {
+    display: flex;
+    padding-top: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.field:not(:last-child) {   
+    margin-right: 15px;
+}
+
+.value {
+    font-size: 40px;
+}
+
+.label {
+    text-transform: uppercase;
+}
