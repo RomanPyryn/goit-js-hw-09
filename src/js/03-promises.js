@@ -24,28 +24,36 @@ function onFormSubmit(e) {
   amount: +inputAmountEl.value,
 };
 
-  setTimeout(() => {
-    timer();
-    }, formData.delay);
+  timer();  
 };
 
 function timer() {
-  
-  timerId = setInterval(() => {
-    position += 1;
+  position = 1;
+  delay = formData.delay;
 
-    if (position > 1) {
-      delay += formData.step;
-    } else {
-      delay = formData.delay;
-    };
-      createPromise(position, delay)
-  .then(({ position, delay }) => {
+  setTimeout(() => {
+    createPromise(position, delay)
+    .then(({ position, delay }) => {
     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  })
-  .catch(({ position, delay }) => {
+    })
+    .catch(({ position, delay }) => {
     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  });
+    });
+    
+  }, formData.delay);
+  
+  if (formData.amount > 1) {
+    timerId = setInterval(() => {
+      position += 1;
+      delay += formData.step;
+      
+      createPromise(position, delay)
+    .then(({ position, delay }) => {
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    })
+    .catch(({ position, delay }) => {
+    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+    });
   
     if (formData.amount === position) { 
       clearInterval(timerId);
@@ -59,7 +67,8 @@ function timer() {
       position = 0;
     };
       
-  }, formData.step);
+    }, formData.step);
+  };
     
 }
 
