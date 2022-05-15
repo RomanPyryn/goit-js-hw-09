@@ -37,13 +37,13 @@ function timer() {
     if (position > 1) {
       formData.delay += formData.step;
     };
-  //     createPromise()
-  // .then(({ position, delay }) => {
-  //   console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  // })
-  // .catch(({ position, delay }) => {
-  //   console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  // });
+      createPromise()
+  .then(({ position, delay }) => {
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+  })
+  .catch(({ position, delay }) => {
+    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+  });
   
     if (formData.amount === position) { 
       clearInterval(timerId);
