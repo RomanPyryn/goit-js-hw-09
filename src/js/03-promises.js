@@ -40,9 +40,7 @@ function timer() {
     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
     });
     
-  }, formData.delay);
-  
-  if (formData.amount > 1) {
+     if (formData.amount > 1) {
     timerId = setInterval(() => {
       position += 1;
       delay += formData.step;
@@ -69,6 +67,9 @@ function timer() {
       
     }, formData.step);
   };
+  }, formData.delay);
+  
+ 
     
 }
 
