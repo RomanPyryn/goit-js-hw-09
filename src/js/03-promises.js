@@ -35,9 +35,11 @@ function timer() {
     position += 1;
 
     if (position > 1) {
-      formData.delay += formData.step;
+      delay += formData.step;
+    } else {
+      delay = formData.delay;
     };
-      createPromise()
+      createPromise(position, delay)
   .then(({ position, delay }) => {
     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
   })
@@ -47,7 +49,14 @@ function timer() {
   
     if (formData.amount === position) { 
       clearInterval(timerId);
-      console.log('STOP');
+      
+      formData = {
+        delay: 0,
+        step: 0,
+        amount: 0,
+      };
+
+      position = 0;
     };
       
   }, formData.step);
@@ -55,9 +64,9 @@ function timer() {
 }
 
 function createPromise(position, delay) {
-  new Promise((resolve, reject) => { 
+  const promise = new Promise((resolve, reject) => { 
     const shouldResolve = Math.random() > 0.3;
-    const data = { position: position, delay: delay, };
+    const data = { position, delay};
 
     if (shouldResolve) {
         // Fulfill
@@ -67,6 +76,8 @@ function createPromise(position, delay) {
         reject(data);
       };
   });
+
+  return promise;
 }
 
 
